@@ -1,0 +1,21 @@
+name: HelloWorld
+# 1. Choose the trigger event
+on:
+  push:
+    branches: [ main ]
+  
+# 2. Define the execution blocks
+jobs:
+  Hello:
+    # Specify the operating system environment
+    runs-on: ubuntu-latest
+
+    # 3. List the sequential steps to execute
+    steps:
+      # Run a simple shell command
+      - name: Say Hello
+        run: echo "🚀 The workflow executed successfully!"
+
+      # Check the pre-installed tools on the runner
+      - name: Verify Python version
+        run: python --version
