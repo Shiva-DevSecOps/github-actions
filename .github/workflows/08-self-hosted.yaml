@@ -1,4 +1,4 @@
-name: Self-hosted-runner
+name: self-hosted-runner
 # 1. Choose the trigger event
 on: [push]
    
