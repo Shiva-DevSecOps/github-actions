@@ -1,0 +1,33 @@
+name: Inputs
+on: 
+  workflow_dispatch: # Trigger manual
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        type: choice
+        options:
+          - Dev
+          - Prod
+        default: 'development'
+      version:
+        description: 'App version'
+        required: true
+        type: string
+        default: 'v1.0.0'
+      run_tests:
+        description: 'Run automated smoke tests?'
+        required: true
+        type: boolean
+        default: true
+      timeout_minutes:
+        description: 'Max execution time'
+        required: false
+        type: number
+        default: 10
+jobs: 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Deploying ${{ inputs.version }} to ${{ inputs.environment }}.
