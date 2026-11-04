@@ -1,7 +1,6 @@
-name: Self Hosted Runner Test
+name: self-hosted
 
-on:
-  workflow_dispatch:
+on: [push]
 
 jobs:
   test:
@@ -9,10 +8,5 @@ jobs:
 
     steps:
       - name: Verify EC2 runner
-        run: |
-          echo "Hello from EC2!"
-          hostname
-          whoami
-          kubectl version --client
-          helm version
-          trivy --version
+        run: echo "Hello from EC2!"
+      
