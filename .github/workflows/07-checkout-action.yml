@@ -11,5 +11,3 @@ jobs:
 
       - name: Display the files
         run: ls -la
-
-  
