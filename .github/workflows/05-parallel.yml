@@ -1,0 +1,25 @@
+name: Parallel
+
+on: [push] # triggers
+concurrency:
+# this workflow should be triggered for any branch only once
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true # Existing will be cancelled and latest will run
+jobs:
+  job-1:
+    runs-on: ubuntu-latest
+    steps: # stages
+      - name: step1
+        run: echo "HI, I'm from job-1"
+
+  job-2:
+    runs-on: ubuntu-latest
+    steps: # stages
+      - name: step1
+        run: echo "HI, I'm from job-2"
+
+  job-3:
+    runs-on: ubuntu-latest
+    steps: # stages
+      - name: step1
+        run: echo "HI, I'm from job-3"
