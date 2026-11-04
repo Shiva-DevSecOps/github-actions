@@ -25,16 +25,10 @@ on:
         type: boolean
         default: true
 
-      timeout_minutes:
-        description: 'Max execution time'
-        required: false
-        type: number
-        default: 10
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ inputs.timeout_minutes }}
+    timeout-minutes: ${{ fromJSON(inputs.timeout_minutes) }}
 
     steps:
       - name: Checkout source code
@@ -46,10 +40,7 @@ jobs:
 
       - name: Run smoke tests
         if: ${{ inputs.run_tests }}
-        run: |
-          echo "Running automated smoke tests..."
-          echo "Smoke tests completed successfully"
+        run: echo "Running smoke tests..."
 
       - name: Deploy application
-        run: |
-          echo "Application deployment completed"
+        run: echo "Application deployment completed"
