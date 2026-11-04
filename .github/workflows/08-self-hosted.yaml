@@ -1,15 +1,26 @@
+
 name: self-hosted-runner
-# 1. Choose the trigger event
-on: [push]
-   
-# 2. Define the execution blocks
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   Hello:
-    # Specify the operating system environment
-    runs-on: self-hosted
-    # 3. List the sequential steps to execute
-    steps:
-      # Run a simple shell command
-      - name: Say Hello
-        run: echo "🚀 The workflow executed successfully!"
+    name: Test EC2 Runner
+    runs-on: [self-hosted, Linux, X64]
 
+    steps:
+      - name: Say Hello
+        run: |
+          echo "🚀 Workflow executed successfully!"
+          echo "Hostname: $(hostname)"
+          echo "User: $(whoami)"
+          echo "Working directory: $(pwd)"
+
+      - name: Check DevOps tools
+        run: |
+          kubectl version --client
+          helm version
+          trivy --version
