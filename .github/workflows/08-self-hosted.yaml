@@ -1,9 +1,7 @@
 name: Self-hosted-runner
 # 1. Choose the trigger event
-on:
-  push:
-    branches: [ main ]
-  
+on: [push]
+   
 # 2. Define the execution blocks
 jobs:
   Hello:
