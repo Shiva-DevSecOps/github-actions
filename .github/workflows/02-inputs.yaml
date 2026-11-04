@@ -1,6 +1,8 @@
+
 name: Application Deployment
-on: 
-  workflow_dispatch: # Trigger manual
+
+on:
+  workflow_dispatch:
     inputs:
       environment:
         description: 'Target environment'
@@ -9,25 +11,45 @@ on:
         options:
           - Dev
           - Prod
-        default: 'development'
+        default: Dev
+
       version:
         description: 'App version'
         required: true
         type: string
         default: 'v1.0.0'
+
       run_tests:
         description: 'Run automated smoke tests?'
         required: true
         type: boolean
         default: true
+
       timeout_minutes:
         description: 'Max execution time'
         required: false
         type: number
         default: 10
-jobs: 
+
+jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: ${{ inputs.timeout_minutes }}
+
     steps:
-      - uses: actions/checkout@v4
-      - run: echo "Deploying ${{ inputs.version }} to ${{ inputs.environment }}.
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Display deployment details
+        run: |
+          echo "Deploying ${{ inputs.version }} to ${{ inputs.environment }}"
+
+      - name: Run smoke tests
+        if: ${{ inputs.run_tests }}
+        run: |
+          echo "Running automated smoke tests..."
+          echo "Smoke tests completed successfully"
+
+      - name: Deploy application
+        run: |
+          echo "Application deployment completed"
