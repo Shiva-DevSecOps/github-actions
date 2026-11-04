@@ -1,0 +1,17 @@
+name: Self-hosted-runner
+# 1. Choose the trigger event
+on:
+  push:
+    branches: [ main ]
+  
+# 2. Define the execution blocks
+jobs:
+  Hello:
+    # Specify the operating system environment
+    runs-on: self-hosted
+    # 3. List the sequential steps to execute
+    steps:
+      # Run a simple shell command
+      - name: Say Hello
+        run: echo "🚀 The workflow executed successfully!"
+
