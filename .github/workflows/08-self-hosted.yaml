@@ -8,5 +8,5 @@ jobs:
 
     steps:
       - name: Verify EC2 runner
-        run: echo "Hello from EC2!"
+        run: echo "Hello world"
       
