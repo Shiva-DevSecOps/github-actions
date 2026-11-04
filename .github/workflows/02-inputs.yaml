@@ -1,4 +1,4 @@
-name: Inputs
+name: Application Deployment
 on: 
   workflow_dispatch: # Trigger manual
     inputs:
